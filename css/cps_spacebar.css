@@ -27,6 +27,7 @@
 
 .sr {
     width: 50%;
+    padding-bottom: 20px;
     margin: auto;
     display: flex;
 }
