@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPS Test</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/cps_spacebar.css">
+</head>
+<body>
+    <div class="menu-bar">
+        <div class="name">
+            <p style="font-size: 30px;">Speed Tests</p>
+        </div>
+        <div class="items">
+            <a href="../index.html">CPS Test</a>
+            <a href="../pages/spacebar.html" class="selected">Spacebar CPS Test</a>
+            <a href="../pages/about.html">About</a>
+        </div>
+    </div>
+    <div class="title">Check your Spacebar CPS!</div>
+    <div class="click-box">
+        <p>Press space to start</p>
+    </div>
+    <div class="sr">
+        <div class="settings">
+            <p style="font-size: 24px;">Settings</p>
+            <p>Time: <input type="number" class="time-input" value="10" max="180">Seconds (Max 180)</p>
+        </div>
+        <div class="results">
+            <p style="font-size: 24px;">Your CPS</p>
+            <p class="cps">Spacebar CPS (Clicks per Seconds): <strong>0</strong></p>
+            <p class="clicks">Pressed <strong>0</strong> times</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../js/spacebar.js"></script>
+</body>
+</html>
