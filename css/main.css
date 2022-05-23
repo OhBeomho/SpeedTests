@@ -51,6 +51,18 @@ a {
     vertical-align: middle;
 }
 
+.name a {
+    transition: all 0.2s;
+}
+
+.name a:hover {
+    color: rgb(156, 141, 251);
+}
+
+.name a:active {
+    color: rgb(199, 190, 255);
+}
+
 .items {
     flex: 2;
     display: table;
