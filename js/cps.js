@@ -1,9 +1,9 @@
 const clickBox = $(".click-box"),
     timeInput = $(".time-input"),
     cpsResult = $(".cps"),
-    clicksResult = $(".clicks")
-let clicks = 0, cps = 0, time = 0
-let clicking = false
+    clicksResult = $(".clicks"),
+    hcpsResult = $(".cps-highest")
+let clicks = 0, cps = 0, time = 0, highestCPS = 0
 
 function boxClicked() {
     if (clickBox.html().trim() == "<p>Click here to start</p>") {
@@ -27,7 +27,6 @@ function boxClicked() {
 }
 
 function startCheck() {
-    clicking = true
     time = timeInput.val()
     clicks = 0
     cps = 0
@@ -39,8 +38,12 @@ function startCheck() {
         timeInput.val(timeInput.val() - 1)
     }, 1000)
     setTimeout(() => {
-        clicking = false
         cps = clicks / time
+
+        if (highestCPS == 0 || cps > highestCPS) {
+            highestCPS = cps
+            hcpsResult.html(`Highest CPS: <strong>${cps}</strong>`)
+        }
 
         alert("Time over!\nYour CPS is " + cps)
         clickBox.html("<p>Click here to start</p>")

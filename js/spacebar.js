@@ -1,9 +1,9 @@
 const clickBox = $(".click-box"),
     timeInput = $(".time-input"),
     cpsResult = $(".cps"),
-    clicksResult = $(".clicks")
-let clicks = 0, cps = 0, time = 0
-let clicking = false
+    clicksResult = $(".clicks"),
+    hcpsResult = $(".cps-highest")
+let clicks = 0, cps = 0, time = 0, highestCPS = 0
 
 function spacebarPressed() {
     if (clickBox.html().trim() == "<p>Press space to start</p>") {
@@ -23,11 +23,10 @@ function spacebarPressed() {
     clickBox.css("font-size", fontSize >= 80 ? fontSize : fontSize + 1 + "px")
     clickBox.html(`<p>${clicks}</p>`)
 
-    clicksResult.html(`Clicked <strong>${clicks}</strong> times`)
+    clicksResult.html(`Pressed <strong>${clicks}</strong> times`)
 }
 
 function startCheck() {
-    clicking = true
     time = timeInput.val()
     clicks = 0
     cps = 0
@@ -39,8 +38,12 @@ function startCheck() {
         timeInput.val(timeInput.val() - 1)
     }, 1000)
     setTimeout(() => {
-        clicking = false
         cps = clicks / time
+
+        if (highestCPS == 0 || cps > highestCPS) {
+            highestCPS = cps
+            hcpsResult.html(`Highest CPS: <strong>${cps}</strong>`)
+        }
 
         alert("Time over!\nYour CPS is " + cps)
         clickBox.html("<p>Press space to start</p>")
@@ -53,7 +56,7 @@ function startCheck() {
 }
 
 $(document).ready(() => {
-    $("body").keydown((event) => {
+    $("body").keyup((event) => {
         if (event.keyCode == 32) {
             spacebarPressed()
         }
