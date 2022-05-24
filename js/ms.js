@@ -1,8 +1,11 @@
 const clickBox = $(".click-box"),
     lowest = $(".ms-lowest"),
-    recent = $(".ms")
-let ms = 0
-let lowestMS = 0
+    recent = $(".ms"),
+    average = $(".ms-average"),
+    resetLowest = $(".reset-lowest"),
+    resetAverage = $(".reset-average")
+let ms = 0, times = 0, msArray = []
+let lowestMS = 0, averageMS = 0
 let pressed = false
 let startTime, endTime
 let timer, time = 0
@@ -13,6 +16,7 @@ function spacebarPressed() {
         startCheck()
     } else {
         pressed = false
+        times++
         endCheck()
     }
 }
@@ -32,13 +36,19 @@ function endCheck() {
     endTime = new Date().getTime()
 
     ms = endTime - startTime
+    msArray.push(ms)
 
     if (lowestMS == 0 || ms < lowestMS) {
         lowestMS = ms
         lowest.html(`Lowest MS: <strong>${ms}</strong>`)
     }
 
+    averageMS = 0
+    msArray.forEach(i => averageMS += i)
+    averageMS /= msArray.length
+
     recent.html(`Recent MS: <strong>${ms}</strong>`)
+    average.html(`Average MS: <strong>${averageMS}</strong>`)
 }
 
 $(document).ready(() => {
@@ -46,5 +56,16 @@ $(document).ready(() => {
         if (event.keyCode == 32) {
             spacebarPressed()
         }
+    })
+    resetAverage.click(() => {
+        averageMS = 0
+        msArray.splice(0)
+        average.html("Average MS: <strong>0</strong>")
+        resetAverage.blur()
+    })
+    resetLowest.click(() => {
+        lowestMS = 0
+        lowest.html("Lowest MS: <strong>0</strong>")
+        resetLowest.blur()
     })
 })
