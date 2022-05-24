@@ -82,3 +82,22 @@ a {
 .items a:active {
     background: rgb(154, 139, 249);
 }
+
+button {
+    outline: none;
+    margin: 10px;
+    background: rgba(116, 101, 212);
+    border: 0;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgb(127, 113, 223);
+}
+
+button:active {
+    background: rgb(154, 139, 249);
+}
