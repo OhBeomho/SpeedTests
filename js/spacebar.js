@@ -2,7 +2,8 @@ const clickBox = $(".click-box"),
     timeInput = $(".time-input"),
     cpsResult = $(".cps"),
     clicksResult = $(".clicks"),
-    hcpsResult = $(".cps-highest")
+    hcpsResult = $(".cps-highest"),
+    resetHighest = $(".reset-highest")
 let clicks = 0, cps = 0, time = 0, highestCPS = 0
 
 function spacebarPressed() {
@@ -42,12 +43,12 @@ function startCheck() {
 
         if (highestCPS == 0 || cps > highestCPS) {
             highestCPS = cps
-            hcpsResult.html(`Highest CPS: <strong>${cps}</strong>`)
+            hcpsResult.html(`Highest Spacebar CPS: <strong>${cps}</strong>`)
         }
 
-        alert("Time over!\nYour CPS is " + cps)
+        alert("Time over!\nYour Spacebar CPS is " + cps)
         clickBox.html("<p>Press space to start</p>")
-        cpsResult.html(`CPS (Clicks per Seconds): <strong>${cps}</strong>`)
+        cpsResult.html(`Spacebar CPS (Clicks per Seconds): <strong>${cps}</strong>`)
 
         timeInput.val(time)
         clearInterval(timer)
@@ -60,5 +61,10 @@ $(document).ready(() => {
         if (event.keyCode == 32) {
             spacebarPressed()
         }
+    })
+    resetHighest.click(() => {
+        highestCPS = 0
+        hcpsResult.html("Highest Spacebar CPS: <strong>0</strong>")
+        resetHighest.blur()
     })
 })

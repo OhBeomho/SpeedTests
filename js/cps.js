@@ -2,7 +2,8 @@ const clickBox = $(".click-box"),
     timeInput = $(".time-input"),
     cpsResult = $(".cps"),
     clicksResult = $(".clicks"),
-    hcpsResult = $(".cps-highest")
+    hcpsResult = $(".cps-highest"),
+    resetHighest = $(".reset-highest")
 let clicks = 0, cps = 0, time = 0, highestCPS = 0
 
 function boxClicked() {
@@ -57,4 +58,9 @@ function startCheck() {
 
 $(document).ready(() => {
     clickBox.click(() => { boxClicked() })
+    resetHighest.click(() => {
+        highestCPS = 0
+        hcpsResult.html("Highest CPS: <strong>0</strong>")
+        resetHighest.blur()
+    })
 })
