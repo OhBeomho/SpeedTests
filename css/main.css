@@ -3,6 +3,7 @@ body, html {
     height: 100%;
     text-align: center;
     margin: 0;
+    font-size: 16px;
 }
 
 * {
@@ -18,6 +19,10 @@ input {
 
 a {
     text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .title {
