@@ -42,6 +42,10 @@ a:hover {
     color: white;
 }
 
+.menu-bar a:hover {
+    text-decoration: none;
+}
+
 .menu-bar .selected {
     background: rgb(124, 110, 214);
 }
