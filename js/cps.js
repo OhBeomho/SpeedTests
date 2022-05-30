@@ -57,7 +57,7 @@ function startCheck() {
 }
 
 $(document).ready(() => {
-    clickBox.click(() => { boxClicked() })
+    clickBox.click(boxClicked)
     resetHighest.click(() => {
         highestCPS = 0
         hcpsResult.html("Highest CPS: <strong>0</strong>")
