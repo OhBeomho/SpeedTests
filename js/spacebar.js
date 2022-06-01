@@ -1,19 +1,18 @@
 const clickBox = $(".click-box"),
-    timeInput = $(".time-input"),
-    cpsResult = $(".cps"),
-    clicksResult = $(".clicks"),
-    hcpsResult = $(".cps-highest"),
-    resetHighest = $(".reset-highest")
+    timeInput = $(".time-input")
 let clicks = 0, cps = 0, time = 0, highestCPS = 0
+let started = false
+let timer, timeout
 
 function spacebarPressed() {
-    if (clickBox.html().trim() == "<p>Press space to start</p>") {
+    if (!started) {
         if (timeInput.val() == "" || timeInput.val() > 180) {
             alert("Time value must be between 1 and 180.")
             return
         }
 
         startCheck()
+        started = true
     }
 
     clicks++
@@ -23,8 +22,6 @@ function spacebarPressed() {
 
     clickBox.css("font-size", fontSize >= 80 ? fontSize : fontSize + 1 + "px")
     clickBox.html(`<p>${clicks}</p>`)
-
-    clicksResult.html(`Pressed <strong>${clicks}</strong> times`)
 }
 
 function startCheck() {
@@ -35,36 +32,56 @@ function startCheck() {
     clickBox.html(`<p>${time}</p>`)
     clickBox.css("fontSize", 10 + "px")
 
-    let timer = setInterval(() => {
+    timeInput.prop("readonly", true)
+
+    timer = setInterval(() => {
         timeInput.val(timeInput.val() - 1)
     }, 1000)
-    setTimeout(() => {
+    timeout = setTimeout(() => {
         cps = clicks / time
 
         if (highestCPS == 0 || cps > highestCPS) {
             highestCPS = cps
-            hcpsResult.html(`Highest Spacebar CPS: <strong>${cps}</strong>`)
+            $(".cps-highest").html(`Highest Spacebar CPS: <strong>${cps}</strong>`)
         }
 
         alert("Time over!\nYour Spacebar CPS is " + cps)
-        clickBox.html("<p>Press space to start</p>")
-        cpsResult.html(`Spacebar CPS (Clicks per Seconds): <strong>${cps}</strong>`)
+        $(".cps").html(`Spacebar CPS (Clicks per Seconds): <strong>${cps}</strong>`)
 
-        timeInput.val(time)
-        clearInterval(timer)
-        clickBox.css("font-size", "medium")
+        stop()
     }, timeInput.val() * 1000)
 }
 
+function stop() {
+    timeInput.prop("readonly", false)
+    clickBox.css("font-size", "medium")
+    clearInterval(timer)
+    timeInput.val(time)
+    started = false
+}
+
 $(document).ready(() => {
-    $("body").keyup((event) => {
+    $(document).keyup((event) => {
         if (event.keyCode == 32) {
             spacebarPressed()
+            event.preventDefault()
         }
     })
-    resetHighest.click(() => {
+    $(".reset-highest").click(() => {
         highestCPS = 0
-        hcpsResult.html("Highest Spacebar CPS: <strong>0</strong>")
-        resetHighest.blur()
+        $(".cps-highest").html("Highest Spacebar CPS: <strong>0</strong>")
+        $(".reset-highest").blur()
+    })
+    $(".stop").click(() => {
+        if (started) {
+            clicks = 0
+            cps = 0
+
+            clearTimeout(timeout)
+            stop()
+
+            clickBox.html("<p>Press space to start</p>")
+            $(".stop").blur()
+        }
     })
 })

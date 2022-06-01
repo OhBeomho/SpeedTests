@@ -1,19 +1,18 @@
 const clickBox = $(".click-box"),
-    timeInput = $(".time-input"),
-    cpsResult = $(".cps"),
-    clicksResult = $(".clicks"),
-    hcpsResult = $(".cps-highest"),
-    resetHighest = $(".reset-highest")
+    timeInput = $(".time-input")
 let clicks = 0, cps = 0, time = 0, highestCPS = 0
+let started = false
+let timer, timeout
 
 function boxClicked() {
-    if (clickBox.html().trim() == "<p>Click here to start</p>") {
+    if (!started) {
         if (timeInput.val() == "" || timeInput.val() > 180) {
             alert("Time value must be between 1 and 180.")
             return
         }
 
         startCheck()
+        started = true
     }
 
     clicks++
@@ -23,44 +22,56 @@ function boxClicked() {
 
     clickBox.css("font-size", fontSize >= 80 ? fontSize : fontSize + 1 + "px")
     clickBox.html(`<p>${clicks}</p>`)
-
-    clicksResult.html(`Clicked <strong>${clicks}</strong> times`)
 }
 
 function startCheck() {
     time = timeInput.val()
     clicks = 0
     cps = 0
+    timeInput.prop("readonly", true)
 
-    clickBox.html(`<p>${time}</p>`)
-    clickBox.css("fontSize", 10 + "px")
-
-    let timer = setInterval(() => {
+    timer = setInterval(() => {
         timeInput.val(timeInput.val() - 1)
     }, 1000)
-    setTimeout(() => {
+    timeout = setTimeout(() => {
         cps = clicks / time
 
         if (highestCPS == 0 || cps > highestCPS) {
             highestCPS = cps
-            hcpsResult.html(`Highest CPS: <strong>${cps}</strong>`)
+            $(".cps-highest").html(`Highest CPS: <strong>${cps}</strong>`)
         }
 
         alert("Time over!\nYour CPS is " + cps)
-        clickBox.html("<p>Click here to start</p>")
-        cpsResult.html(`CPS (Clicks per Seconds): <strong>${cps}</strong>`)
-
-        timeInput.val(time)
-        clearInterval(timer)
-        clickBox.css("font-size", "medium")
+        $(".cps").html(`CPS (Clicks per Seconds): <strong>${cps}</strong>`)
+        stop()
     }, timeInput.val() * 1000)
+}
+
+function stop() {
+    timeInput.prop("readonly", false)
+    clickBox.css("font-size", "medium")
+    clearInterval(timer)
+    timeInput.val(time)
+    started = false
 }
 
 $(document).ready(() => {
     clickBox.click(boxClicked)
-    resetHighest.click(() => {
+    $(".reset-highest").click(() => {
         highestCPS = 0
-        hcpsResult.html("Highest CPS: <strong>0</strong>")
-        resetHighest.blur()
+        $(".cps-highest").html("Highest CPS: <strong>0</strong>")
+        $(".reset-highest").blur()
+    })
+    $(".stop").click(() => {
+        if (started) {
+            clicks = 0
+            cps = 0
+
+            clearTimeout(timeout)
+            stop()
+
+            clickBox.html("<p>Click here to start</p>")
+            $(".stop").blur()
+        }
     })
 })
