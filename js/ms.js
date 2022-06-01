@@ -1,9 +1,4 @@
-const clickBox = $(".click-box"),
-    lowest = $(".ms-lowest"),
-    recent = $(".ms"),
-    average = $(".ms-average"),
-    resetLowest = $(".reset-lowest"),
-    resetAverage = $(".reset-average")
+const clickBox = $(".click-box")
 let ms = 0, times = 0, msArray = []
 let lowestMS = 0, averageMS = 0
 let pressed = false
@@ -31,24 +26,23 @@ function startCheck() {
 function endCheck() {
     clearInterval(timer)
     time = 0
-    clickBox.html("<p>Press the spacebar twice as fast as possible</p>")
 
     endTime = new Date().getTime()
 
     ms = endTime - startTime
     msArray.push(ms)
+    clickBox.html(`<p>${ms}</p>`)
 
     if (lowestMS == 0 || ms < lowestMS) {
         lowestMS = ms
-        lowest.html(`Lowest MS: <strong>${ms}</strong>`)
+        $(".ms-lowest").html(`Lowest MS: <strong>${ms}</strong>`)
     }
 
     averageMS = 0
     msArray.forEach(i => averageMS += i)
     averageMS /= msArray.length
 
-    recent.html(`Recent MS: <strong>${ms}</strong>`)
-    average.html(`Average MS: <strong>${averageMS}</strong>`)
+    $(".ms-average").html(`Average MS: <strong>${averageMS}</strong>`)
 }
 
 $(document).ready(() => {
@@ -57,15 +51,15 @@ $(document).ready(() => {
             spacebarPressed()
         }
     })
-    resetAverage.click(() => {
+    $(".reset-average").click(() => {
         averageMS = 0
         msArray.splice(0)
-        average.html("Average MS: <strong>0</strong>")
-        resetAverage.blur()
+        $(".ms-average").html("Average MS: <strong>0</strong>")
+        $(".reset-average").blur()
     })
-    resetLowest.click(() => {
+    $(".reset-lowest").click(() => {
         lowestMS = 0
-        lowest.html("Lowest MS: <strong>0</strong>")
-        resetLowest.blur()
+        $(".ms-lowest").html("Lowest MS: <strong>0</strong>")
+        $(".reset-lowest").blur()
     })
 })
