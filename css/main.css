@@ -18,12 +18,13 @@ input {
 }
 
 a {
-    color: rgb(0, 191, 255);
+    color: rgb(0, 102, 255);
+    transition: all 0.2s;
     text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: rgb(88, 164, 226);
 }
 
 .title {
