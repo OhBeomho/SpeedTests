@@ -1,11 +1,46 @@
-.content .version {
-    font-size: 25px;
-    margin-top: 30px;
-    font-weight: bold;
+.updates {
+    width: 50%;
+    min-width: 700px;
+    margin: auto;
 }
 
-.content .date {
+.version {
+    background: rgb(225, 225, 225);
+    font-weight: bold;
+    font-size: 20px;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+}
+
+.version:hover {
+    background: rgb(179, 179, 179);
+}
+
+.version:active {
+    background: rgb(245, 245, 245);
+}
+
+.version.active {
+    background: rgb(245, 245, 245);
+}
+
+.version.active:hover {
+    background: rgb(220, 220, 220);
+}
+
+.date {
     font-size: 12px;
+    margin: 3px;
     margin-top: 15px;
-    margin-bottom: 5px;
+}
+
+.content {
+    margin-bottom: 20px;
+    padding: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s;
 }
