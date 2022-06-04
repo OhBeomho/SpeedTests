@@ -19,7 +19,8 @@ function spacebarPressed() {
 function startCheck() {
     startTime = new Date().getTime()
     timer = setInterval(() => {
-        clickBox.html(`<p>${++time}</p>`)
+        time += 4
+        clickBox.html(`<p>${time}</p>`)
     }, 1)
 }
 
