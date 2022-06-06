@@ -51,6 +51,7 @@ function stop() {
     timeInput.prop("readonly", false)
     clickBox.css("font-size", "medium")
     clearInterval(timer)
+    clearTimeout(timeout)
     timeInput.val(time)
     started = false
 }
@@ -67,7 +68,6 @@ $(document).ready(() => {
             clicks = 0
             cps = 0
 
-            clearTimeout(timeout)
             stop()
 
             clickBox.html("<p>Click here to start</p>")
