@@ -1,13 +1,14 @@
 .click-box {
     background: rgba(116, 101, 212);
-    width: 50%;
+    width: 90%;
+    max-width: 1200px;
     height: 40vh;
     min-height: 400px;
     margin: auto;
     display: table;
     user-select: none;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background-color 0.2s;
     color: white;
     border-radius: 5px;
 }
