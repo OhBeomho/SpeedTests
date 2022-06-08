@@ -1,10 +1,4 @@
-.updates {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.version {
+.atitle {
     background: rgb(225, 225, 225);
     font-weight: bold;
     font-size: 20px;
@@ -12,22 +6,24 @@
     cursor: pointer;
     transition: all 0.2s;
     border-radius: 10px 10px 0px 0px;
-    width: 100%;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
 }
 
-.version:hover {
+.atitle:hover {
     background: rgb(179, 179, 179);
 }
 
-.version:active {
+.atitle:active {
     background: rgb(245, 245, 245);
 }
 
-.version.active {
+.atitle.active {
     background: rgb(245, 245, 245);
 }
 
-.version.active:hover {
+.atitle.active:hover {
     background: rgb(220, 220, 220);
 }
 
@@ -38,9 +34,12 @@
 }
 
 .content {
-    margin-bottom: 20px;
-    padding: 10px;
-    max-height: 0;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    margin-bottom: 25px;
+    margin-top: 5px;
+    max-height: 0px;
     overflow: hidden;
     transition: all 0.5s;
 }
