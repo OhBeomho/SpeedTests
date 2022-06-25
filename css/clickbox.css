@@ -5,7 +5,9 @@
     height: 40vh;
     min-height: 400px;
     margin: auto;
-    display: table;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     user-select: none;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -19,9 +21,4 @@
 
 .click-box:active {
     background: rgb(154, 139, 249);
-}
-
-.click-box p {
-    display: table-cell;
-    vertical-align: middle;
 }
