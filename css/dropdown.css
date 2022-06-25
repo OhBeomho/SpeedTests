@@ -1,4 +1,4 @@
-.atitle {
+.dropdown-title {
     background: rgb(225, 225, 225);
     font-weight: bold;
     font-size: 20px;
@@ -11,19 +11,19 @@
     margin: auto;
 }
 
-.atitle:hover {
+.dropdown-title:hover {
     background: rgb(179, 179, 179);
 }
 
-.atitle:active {
+.dropdown-title:active {
     background: rgb(245, 245, 245);
 }
 
-.atitle.active {
+.dropdown-title.active {
     background: rgb(245, 245, 245);
 }
 
-.atitle.active:hover {
+.dropdown-title.active:hover {
     background: rgb(220, 220, 220);
 }
 
@@ -33,7 +33,7 @@
     margin-top: 15px;
 }
 
-.content {
+.dropdown-content {
     width: 90%;
     max-width: 1200px;
     margin: auto;

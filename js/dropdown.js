@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    $(".atitle").each((index, accordionTitle) => {
+    $(".dropdown-title").each((index, accordionTitle) => {
         $(accordionTitle).click(() => {
             $(accordionTitle).toggleClass("active")
 
