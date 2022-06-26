@@ -54,12 +54,9 @@ a:hover {
 
 .name {
     flex: 1;
-    display: table;
-}
-
-.name p {
-    display: table-cell;
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .name a {
@@ -76,12 +73,17 @@ a:hover {
 
 .items {
     flex: 2;
-    display: table;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .items a {
-    display: table-cell;
-    vertical-align: middle;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: all 0.2s;
 }

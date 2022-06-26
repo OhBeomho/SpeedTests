@@ -9,6 +9,7 @@
     width: 90%;
     max-width: 1200px;
     margin: auto;
+    margin-bottom: 10px;
 }
 
 .dropdown-title:hover {
@@ -37,8 +38,6 @@
     width: 90%;
     max-width: 1200px;
     margin: auto;
-    margin-bottom: 25px;
-    margin-top: 5px;
     max-height: 0px;
     overflow: hidden;
     transition: all 0.5s;

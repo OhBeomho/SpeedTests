@@ -4,7 +4,9 @@ $(document).ready(() => {
             $(accordionTitle).toggleClass("active")
 
             let content = $(accordionTitle).next()
-            $(content).css("max-height", $(content).css("max-height") == "0px" ? $(content).prop("scrollHeight") + "px" : "0px")
+            let invisible = $(content).css("max-height") == "0px"
+            $(content).css("max-height", invisible ? $(content).prop("scrollHeight") + "px" : "0px")
+            $(content).css("margin-bottom", invisible ? "10px" : "0px")
         })
     })
 })
