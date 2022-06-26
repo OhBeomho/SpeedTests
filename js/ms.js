@@ -41,7 +41,7 @@ function endCheck() {
 
     averageMS = 0
     msArray.forEach(i => averageMS += i)
-    averageMS /= msArray.length
+    averageMS = Math.round(averageMS / msArray.length)
 
     $(".ms-average").html(`Average MS: <strong>${averageMS}</strong>`)
 }
