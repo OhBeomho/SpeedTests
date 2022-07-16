@@ -12,6 +12,27 @@
     margin-bottom: 10px;
 }
 
+.dropdown-title.menu {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    background: rgb(116, 101, 212);
+    margin-bottom: 0;
+    color: white;
+}
+
+.dropdown-title.menu:hover {
+    background: rgb(109, 93, 214);
+}
+
+.dropdown-title.menu.active {
+    background: rgb(127, 113, 223);
+}
+
+.dropdown-title.menu.active:hover {
+    background: rgb(134, 120, 227);
+}
+
 .dropdown-title:hover {
     background: rgb(179, 179, 179);
 }
@@ -28,12 +49,6 @@
     background: rgb(220, 220, 220);
 }
 
-.date {
-    font-size: 12px;
-    margin: 3px;
-    margin-top: 15px;
-}
-
 .dropdown-content {
     width: 90%;
     max-width: 1200px;
@@ -41,4 +56,9 @@
     max-height: 0px;
     overflow: hidden;
     transition: all 0.5s;
+}
+
+.dropdown-content.menu {
+    width: 100%;
+    max-width: 100%;
 }

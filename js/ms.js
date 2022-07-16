@@ -46,7 +46,7 @@ function endCheck() {
     $(".ms-average").html(`Average MS: <strong>${averageMS}</strong>`)
 }
 
-$(document).ready(() => {
+$(() => {
     $("body").keydown((event) => {
         if (event.keyCode == 32) {
             spacebarPressed()

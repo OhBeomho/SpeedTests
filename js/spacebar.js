@@ -61,7 +61,7 @@ function stop() {
     started = false
 }
 
-$(document).ready(() => {
+$(() => {
     $(document).keyup((event) => {
         if (event.keyCode == 32) {
             spacebarPressed()

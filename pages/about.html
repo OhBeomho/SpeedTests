@@ -6,18 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dropdown.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
 </head>
 <body>
-    <div class="menu-bar">
-        <div class="name">
-            <p style="font-size: 30px;"><a href="../index.html">Speed Tests</a></p>
-        </div>
-        <div class="items">
-            <a href="./cps.html">CPS Test</a>
-            <a href="./spacebar.html">Spacebar CPS Test</a>
-            <a href="./ms.html">MS Test</a>
-            <a href="./about.html" class="selected">About</a>
+    <div class="name">
+        <p style="font-size: 30px;">
+            <a href="../index.html">Speed Tests</a>
+        </p>
+    </div>
+    <div class="dropdown-title menu">
+        Menu
+    </div>
+    <div class="dropdown-content menu">
+        <div class="menu-bar">
+            <div class="items">
+                <a href="../pages/cps.html">CPS Test</a>
+                <a href="../pages/spacebar.html">Spacebar CPS Test</a>
+                <a href="../pages/ms.html">MS Test</a>
+                <a href="../pages/about.html">About</a>
+            </div>
         </div>
     </div>
     <div class="title">About this website <i class="fas fa-info-circle"></i></div>
@@ -42,5 +50,8 @@
         Because my favorite game is <a href="https://www.roblox.com/games/445664957/Parkour">Roblox Parkour</a>.<br>
         It's not a popular game, but I love it.
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="../js/dropdown.js"></script>
 </body>
 </html>
