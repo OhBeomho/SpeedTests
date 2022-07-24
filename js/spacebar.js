@@ -1,8 +1,15 @@
 const clickBox = $(".click-box"),
     timeInput = $(".time-input")
-let clicks = 0, cps = 0, time = 0, highestCPS = 0
+let clicks = 0, hps = 0, time = 0, highestHPS = 0
 let started = false
 let timer, timeout
+import {
+    useStorage
+} from "./storage.js"
+const {
+    getHighestHPS,
+    setHighestHPS
+} = useStorage()
 
 function spacebarPressed() {
     if (!started) {
@@ -27,7 +34,7 @@ function spacebarPressed() {
 function startCheck() {
     time = timeInput.val()
     clicks = 0
-    cps = 0
+    hps = 0
 
     clickBox.html(`<p>${time}</p>`)
     clickBox.css("fontSize", 10 + "px")
@@ -38,15 +45,16 @@ function startCheck() {
         timeInput.val(timeInput.val() - 1)
     }, 1000)
     timeout = setTimeout(() => {
-        cps = clicks / time
+        hps = clicks / time
 
-        if (highestCPS == 0 || cps > highestCPS) {
-            highestCPS = cps
-            $(".cps-highest").html(`Highest Spacebar CPS: <strong>${cps}</strong>`)
+        if (highestHPS == 0 || hps > highestHPS) {
+            highestHPS = hps
+            setHighestHPS(hps)
+            $(".hps-highest").html(`Highest Spacebar HPS: <strong>${hps}</strong>`)
         }
 
-        alert("Time over!\nYour Spacebar CPS is " + cps)
-        $(".cps").html(`Spacebar CPS (Clicks per Seconds): <strong>${cps}</strong>`)
+        alert("Time over!\nYour Spacebar CPS is " + hps)
+        $(".hps").html(`Spacebar HPS (Hits per Seconds): <strong>${hps}</strong>`)
 
         stop()
     }, timeInput.val() * 1000)
@@ -62,6 +70,9 @@ function stop() {
 }
 
 $(() => {
+    highestHPS = getHighestHPS()
+    $(".hps-highest").html(`Highest Spacebar HPS: <strong>${highestHPS}</strong>`)
+
     $(document).keyup((event) => {
         if (event.keyCode == 32) {
             spacebarPressed()
@@ -69,14 +80,14 @@ $(() => {
         }
     })
     $(".reset-highest").click(() => {
-        highestCPS = 0
-        $(".cps-highest").html("Highest Spacebar CPS: <strong>0</strong>")
+        highestHPS = 0
+        $(".hps-highest").html("Highest Spacebar HPS: <strong>0</strong>")
         $(".reset-highest").blur()
     })
     $(".stop").click(() => {
         if (started) {
             clicks = 0
-            cps = 0
+            hps = 0
 
             stop()
 

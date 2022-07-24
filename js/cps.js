@@ -3,6 +3,13 @@ const clickBox = $(".click-box"),
 let clicks = 0, cps = 0, time = 0, highestCPS = 0
 let started = false
 let timer, timeout
+import {
+    useStorage
+} from "./storage.js"
+const {
+    getHighestCPS,
+    setHighestCPS
+} = useStorage()
 
 function boxClicked() {
     if (!started) {
@@ -38,6 +45,7 @@ function startCheck() {
 
         if (highestCPS == 0 || cps > highestCPS) {
             highestCPS = cps
+            setHighestCPS(cps);
             $(".cps-highest").html(`Highest CPS: <strong>${cps}</strong>`)
         }
 
@@ -57,6 +65,9 @@ function stop() {
 }
 
 $(document).ready(() => {
+    highestCPS = getHighestCPS();
+    $(".cps-highest").html(`Highest CPS: <strong>${highestCPS}</strong>`);
+
     clickBox.click(boxClicked)
     $(".reset-highest").click(() => {
         highestCPS = 0

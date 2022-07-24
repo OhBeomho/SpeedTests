@@ -4,6 +4,13 @@ let lowestMS = 0, averageMS = 0
 let pressed = false
 let startTime, endTime
 let timer, time = 0
+import {
+    useStorage
+} from "./storage.js"
+const {
+    getLowestMS,
+    setLowestMS
+} = useStorage()
 
 function spacebarPressed() {
     if (!pressed) {
@@ -36,6 +43,7 @@ function endCheck() {
 
     if (lowestMS == 0 || ms < lowestMS) {
         lowestMS = ms
+        setLowestMS(ms)
         $(".ms-lowest").html(`Lowest MS: <strong>${ms}</strong>`)
     }
 
@@ -47,6 +55,9 @@ function endCheck() {
 }
 
 $(() => {
+    lowestMS = getLowestMS();
+    $(".ms-lowest").html(`Lowest MS: <strong>${lowestMS}</strong>`);
+
     $("body").keydown((event) => {
         if (event.keyCode == 32) {
             spacebarPressed()
